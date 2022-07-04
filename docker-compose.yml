@@ -14,7 +14,7 @@ services:
       - backend
   
   app:
-    image: lav
+    image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/lav:${IMAGE_VERSION}
     restart: always
     depends_on: 
       - db
