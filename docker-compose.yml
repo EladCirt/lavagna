@@ -1,17 +1,17 @@
 version: "3"
 
 services:
-  db:
-    platform: linux/amd64
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: 12345
-    restart: always
-    volumes:
-      - mysql-data:/var/lib/mysql
-      - ./db:/docker-entrypoint-initdb.d
-    networks:
-      - backend
+  # db:
+  #   platform: linux/amd64
+  #   image: mysql:5.7
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: 12345
+  #   restart: always
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #     - ./db:/docker-entrypoint-initdb.d
+  #   networks:
+  #     - backend
   
   app:
     image: 644435390668.dkr.ecr.us-east-1.amazonaws.com/lav:${IMAGE_VERSION}
@@ -19,13 +19,18 @@ services:
     depends_on: 
       - db
     environment: 
+      # - ENV DB_DIALECT=MYSQL
+      # - ENV DB_URL=jdbc:mysql://db:3306/lavagna 
+      # - ENV DB_USER=root
+      # - ENV DB_PASS=12345
+      # - ENV SPRING_PROFILE=dev
       - ENV DB_DIALECT=MYSQL
-      - ENV DB_URL=jdbc:mysql://db:3306/lavagna 
-      - ENV DB_USER=root
-      - ENV DB_PASS=12345
+      - ENV DB_URL= elad-lavgna-db.cwkumi4ykhce.us-east-1.rds.amazonaws.com:3306/lavagna 
+      - ENV DB_USER=admin
+      - ENV DB_PASS=12345678
       - ENV SPRING_PROFILE=dev
     networks:
-      - backend
+      # - backend
       - frontend
 
   nginx:
