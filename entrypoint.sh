@@ -3,7 +3,7 @@
 state=0
 while [ $state -eq 0 ]; do
 # nc -z -v db:3306;
-nc -z -v elad-lavgna-db.cwkumi4ykhce.us-east-1.rds.amazonaws.com; 
+nc -z -v elad-lavgna-db.cwkumi4ykhce.us-east-1.rds.amazonaws.com:3306; 
 if [ $? -eq 0 ];then
 state=1;
 else
